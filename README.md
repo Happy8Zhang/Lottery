@@ -1,7 +1,7 @@
 # Lottery
 3D抽奖程序 
 
-https://github.com/Happy8Zhang/Lottery/blob/master/showing.gif
+![image](https://github.com/Happy8Zhang/Lottery/blob/master/showing.gif)
 
 【开发者】
 
