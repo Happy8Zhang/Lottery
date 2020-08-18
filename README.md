@@ -11,7 +11,7 @@
  
 1 安装Desktop Runtime, 下载地址：https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-desktop-3.1.5-windows-x64-installer
 
-2 配置Images文件夹，见上面2；
+2 【配置】Images文件夹；
 
 3 运行：bin/netcoreapp3.1/Demo.Lottery.exe。
 
