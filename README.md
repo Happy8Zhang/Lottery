@@ -11,11 +11,9 @@
  
 1 安装Desktop Runtime, 下载地址：https://dotnet.microsoft.com/download/dotnet-core/thank-you/runtime-desktop-3.1.5-windows-x64-installer
 
-2 【配置】Images文件夹；
+2 运行：bin/netcoreapp3.1/Demo.Lottery.exe。
 
-3 运行：bin/netcoreapp3.1/Demo.Lottery.exe。
-
-【软件功能说明】
+【软件功能】
 
 1 运行软件前，请先进行相应的【配置】；
 
@@ -25,6 +23,7 @@
 
 4 所有抽奖结算后，可以点击左侧导出按钮，将所有获奖者保存于桌面上《获奖名单.xlsx》的文件中。
 
+_____________________________________________________________________________________________________________
 【配置】
 
 Images文件夹中
