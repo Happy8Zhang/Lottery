@@ -16,6 +16,7 @@
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="UpdateIgnoreFile.py" />
+    <None Remove="演示.gif" />
   </ItemGroup>
 
   <ItemGroup>
