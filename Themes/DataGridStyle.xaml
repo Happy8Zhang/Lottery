@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Demo.Lottery">
+    <Style TargetType="DataGridColumnHeader" x:Key="ColumnHeader.Static">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="{x:Static local:NewBrush.Orange}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1,1,1,2" />
+        <Setter Property="BorderBrush" Value="{x:Static local:NewBrush.Orange}" />
+    </Style>
+    <Style TargetType="DataGridCell" x:Key="Cell.Static">
+        <Setter Property="Background" Value="Transparent" />
+        <!--文字居中-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="DataGridRow" x:Key="Row.Static">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="Foreground" Value="{x:Static local:NewBrush.Orange}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="{x:Static local:NewBrush.Aqua}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="DataGridRowHeader" x:Key="RowHeader.Static">
+        <Setter Property="Width" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+</ResourceDictionary>

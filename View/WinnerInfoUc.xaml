@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Demo.Lottery.WinnerInfoUc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Demo.Lottery"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="380">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="1" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="26" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="4" Grid.Row="1" >
+            <Border BorderBrush="#FF4136" BorderThickness="2" Margin="0,-4"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}, Path=ActualWidth}"
+                    Height="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth}"
+                    CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualWidth}">
+                <Image Source="{Binding Winner.Logo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                       Stretch="Uniform" SnapsToDevicePixels="True" UseLayoutRounding="True"/>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Winner,RelativeSource={RelativeSource AncestorType=UserControl}}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+        </Grid>
+        <TextBlock Grid.Row="0" Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=Winner.AwardName}"
+                   TextAlignment="Center" Foreground="Red" FontSize="40"/>
+        <TextBlock Grid.Row="2" Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=Winner.BasicInfo}" 
+                   TextWrapping="WrapWithOverflow" TextAlignment="Left" />
+    </Grid>
+</UserControl>

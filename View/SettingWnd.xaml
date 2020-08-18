@@ -1,0 +1,107 @@
+﻿<Window x:Class="Demo.Lottery.SettingWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo.Lottery"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="奖项设置" Height="400" Width="610">
+    <Window.DataContext>
+        <local:SettingVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="36" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="160" />
+            <Setter Property="Height" Value="36" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource ColumnHeader.Static}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="BorderBrush" Value="Black" />
+        </Style>
+        <Style TargetType="DataGridCell" BasedOn="{StaticResource Cell.Static}"/>
+        <Style TargetType="DataGridRow" BasedOn="{StaticResource Row.Static}">
+            <Setter Property="Foreground" Value="Black" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="{x:Static local:NewBrush.Lime}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Margin="5,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <Label Content="奖项名称"/>
+                <TextBox Text="{Binding Award.AwardName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3">
+                <Label Content="中奖人数"/>
+                <TextBox Text="{Binding Award.StrNumberOfWinning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="5">
+                <Label Content="奖品描述"/>
+                <TextBox Text="{Binding Award.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <!--<CheckBox Content="单次抽完" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0"
+                              IsChecked="{Binding Award.CanSelectAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+            <Button Grid.Row="8" Content="添     加" FontSize="20" Margin="10,20" IsDefault="True" 
+                    Command="{Binding AddCmd}"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DataGrid ItemsSource="{Binding Awards, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      HorizontalScrollBarVisibility="Disabled" Focusable="False" IsTabStop="False"
+                      VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                      CanUserAddRows="False" AutoGenerateColumns="False" CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="序号" Binding="{Binding Number}" Width="36" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="奖项" Binding="{Binding AwardName}" Width="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="人数" Binding="{Binding NumberOfWinning}" Width="36" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="奖品" Binding="{Binding Description}" Width="140" IsReadOnly="True"/>
+                    <!--<DataGridTextColumn Header="单次抽完" Binding="{Binding StrSelectAll}" Width="60" IsReadOnly="True"/>-->
+                    <DataGridTemplateColumn Header="操作" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="local:AwardInfo">
+                                <local:IconFontToggleButton 
+                                       FontFamily="..\Font\#iconfont" IconFontUnicode="&#xe61e;" 
+                                       Foreground="Black" MouseOverColor="{x:Static local:NewBrush.Red}"
+                                       IsChecked="{Binding Deleted, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock Grid.Row="1" Text="注：默认按照【序号】倒序进行抽奖" FontSize="20" Foreground="{x:Static local:NewBrush.Red}" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>

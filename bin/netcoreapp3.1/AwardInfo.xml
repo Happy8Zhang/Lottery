@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAwardInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AwardInfo Number="1" AwardName="特等奖" NumberOfWinning="1" NumberOfHasWon="0" Description="iPhone" />
+  <AwardInfo Number="2" AwardName="一等奖" NumberOfWinning="2" NumberOfHasWon="0" Description="iPod" />
+</ArrayOfAwardInfo>

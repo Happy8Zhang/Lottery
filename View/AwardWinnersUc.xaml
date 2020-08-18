@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Demo.Lottery.AwardWinnersUc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Demo.Lottery"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="200">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="Foreground" Color="#FF4136"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=Winners}" 
+                  HorizontalScrollBarVisibility="Disabled" Focusable="False" IsTabStop="False"
+                  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="True"
+                  CanUserAddRows="False" AutoGenerateColumns="False" CanUserDeleteRows="False" Background="Transparent"
+                  ColumnHeaderStyle="{StaticResource ColumnHeader.Static}"  
+                  RowHeaderStyle="{StaticResource RowHeader.Static}" 
+                  RowStyle="{StaticResource Row.Static}" 
+                  CellStyle="{StaticResource Cell.Static}"  
+                  BorderBrush="{x:Static local:NewBrush.Orange}"
+                  HorizontalGridLinesBrush="{x:Static local:NewBrush.Orange}"
+                  VerticalGridLinesBrush="{x:Static local:NewBrush.Orange}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="获奖人" Binding="{Binding Name}" Width="100" IsReadOnly="True"/>
+                <DataGridTextColumn Header="部门" Binding="{Binding Department}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="奖项" Binding="{Binding AwardName}" Width="60" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
